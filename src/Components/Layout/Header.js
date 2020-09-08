@@ -7,8 +7,8 @@ const Header = () => {
     return(
         <div className="w-full text-white py-4 flex flex-row place-content-center bg-blue-800">
             <div className="flex flex-col w-1/3">
-                <h1 className="text-2xl text-blue-300 leading-tight">
-                Slacker News
+                <h1 className="text-2xl text-blue-300 hover:text-blue-200 leading-tight">
+                <Link to="/">Slacker News</Link>
                 </h1>
                 <p className="text-base text-gray-100 leading-normal">
                 Bringing some news, I guess?
@@ -21,7 +21,7 @@ const Header = () => {
             <NavItem text="Ask" />
             <NavItem text="Show" />
             <NavItem text="Jobs" />
-            <NavItem text="Submit" />
+            <Link to="/newpost"><NavItem text="Submit" /></Link>
             <Link to="/login"><BlueButton text="Login" /></Link>
         </div>
        

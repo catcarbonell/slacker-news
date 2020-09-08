@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PostContainer from './PostContainer';
 import Login from './LoginSignUp/Login';
 import SignUp from './LoginSignUp/SignUp';
+import NewPost from './NewPost';
 
 const Content = () => {
     return(
@@ -11,7 +12,7 @@ const Content = () => {
           <Route exact path="/" component={PostContainer} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
-          {/* Submit new post */}
+          <Route path="/newpost" component={NewPost} />
           {/* Comments */}
         </Switch>  
       </div>
