@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './Components/Layout/Header';
+import Post from './Components/Post';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    return (
+      <>
+      <Header />
+      <div id="post-container">
+        <Post 
+          title="Almost half of senior employees confess to slacking off at work"
+          url="https://www.hrreview.co.uk/hr-news/almost-half-of-senior-employees-confess-to-slacking-off-at-work/120829"
+          shorturl="hrreview.co.uk"
+          username="somedude"
+          time="8 hours ago"
+          comments={420}
+        />
+      </div>
+      
+      </>
   );
 }
 
