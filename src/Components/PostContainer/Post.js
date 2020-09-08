@@ -1,5 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import Container from '../Layout/Container'
+
 const Post = (props) => {
     return(
             <Container>
@@ -13,7 +15,7 @@ const Post = (props) => {
                 <p>{props.username} |</p> 
                 <p>{props.time} |</p> 
                 <p>hide |</p> 
-                <p>{props.comments} comments</p>
+                <p className="hover:text-blue-400"><Link to="/comments">{props.comments} comments</Link></p>
             </div>
             </Container>
 
