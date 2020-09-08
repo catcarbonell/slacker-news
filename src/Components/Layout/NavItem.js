@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavItem =(props)=>{
     return(
-        <div className="px-2 py-4 mx-2">
+        <div className="flex items-center self-center px-2 mx-2 cursor-pointer hover:text-blue-300">
            <p>{props.text}</p>
         </div>
     )
