@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import PostContainer from './PostContainer';
 import Login from './LoginSignUp/Login';
 import SignUp from './LoginSignUp/SignUp';
+import NewPost from './NewPost';
+import Comments from './Comments';
 
 const Content = () => {
     return(
@@ -11,8 +13,9 @@ const Content = () => {
           <Route exact path="/" component={PostContainer} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
-          {/* Submit new post */}
-          {/* Comments */}
+          <Route path="/newpost" component={NewPost} />
+          {/* for comments, we will need to figure out how to route to a specific Post via ID */}
+          <Route path="/comments" component={Comments} />
         </Switch>  
       </div>
     )
