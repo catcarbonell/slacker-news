@@ -1,5 +1,6 @@
 import React from 'react';
 import NavItem from './NavItem';
+import BlueButton from './BlueButton';
 
 const Header = () => {
     return(
@@ -20,10 +21,7 @@ const Header = () => {
             <NavItem text="Show" />
             <NavItem text="Jobs" />
             <NavItem text="Submit" />
-            
-            <div className="bg-blue-400 ml-4 hover:bg-blue-700 text-center rounded-md shadow-xl flex items-center">
-                <NavItem text="Login" />
-            </div>
+            <BlueButton text="Login" />
         </div>
        
       </div>
