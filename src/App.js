@@ -7,6 +7,7 @@ function App() {
       <>
       <Header />
       <div id="post-container">
+        {/* We can .map() the Firebase DB for content. This Post component will be the base for it. */}
         <Post 
           title="Almost half of senior employees confess to slacking off at work"
           url="https://www.hrreview.co.uk/hr-news/almost-half-of-senior-employees-confess-to-slacking-off-at-work/120829"
