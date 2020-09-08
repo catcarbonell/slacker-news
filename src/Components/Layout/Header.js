@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import NavItem from './NavItem';
 import BlueButton from './BlueButton';
 
@@ -13,7 +14,7 @@ const Header = () => {
                 Bringing some news, I guess?
                 </p>
             </div>
-        <div className="flex flex-row w-1/2 justify-end">
+        <div className="flex flex-row w-1/2 justify-end items-center">
             <NavItem text="New" />
             <NavItem text="Past" />
             <NavItem text="Comments" />
@@ -21,7 +22,7 @@ const Header = () => {
             <NavItem text="Show" />
             <NavItem text="Jobs" />
             <NavItem text="Submit" />
-            <BlueButton text="Login" />
+            <Link to="/login"><BlueButton text="Login" /></Link>
         </div>
        
       </div>
