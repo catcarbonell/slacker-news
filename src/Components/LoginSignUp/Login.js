@@ -21,7 +21,6 @@ class Login extends Component {
     super(props);
     this.login = this.login.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.signup = this.signup.bind(this);
     this.state = {
       username: "",
       password: "",
@@ -56,20 +55,6 @@ class Login extends Component {
       });
   }
 
-  signup(e) {
-    e.preventDefault();
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(e.username, e.password)
-      .then((u) => {})
-      .then((u) => {
-        console.log(u);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   render() {
     return (
       <div className="m-auto max-w-sm flex flex-col p-6 bg-white mt-10 rounded-lg shadow-xl border-2 border-solid border-gray-200">
@@ -84,9 +69,7 @@ class Login extends Component {
               type="text"
               placeholder="somedude"
               name="username"
-              onChange={(e) =>
-                this.setState({ [e.target.name]: e.target.value })
-              }
+              onChange={(e) => this.setState({ username: e.target.value })}
             />
           </div>
 
@@ -99,9 +82,7 @@ class Login extends Component {
               type="password"
               placeholder="******"
               name="password"
-              onChange={(e) =>
-                this.setState({ [e.target.name]: e.target.value })
-              }
+              onChange={(e) => this.setState({ password: e.target.value })}
             />
           </div>
           <div className="mt-8">
@@ -109,7 +90,14 @@ class Login extends Component {
               onClick={this.submitValue}
               className="uppercase w-20 font-bold"
             >
-              <BlueButton text="Login" />
+              <button
+                onClick={(props) => {
+                  console.log("Button was pressed");
+                  this.login(props);
+                }}
+              >
+                Login
+              </button>
             </div>
 
             <p className="mx-auto mt-6 cursor-pointer uppercase font-bold text-xs text-blue-500 hover:text-blue-300">

@@ -12,7 +12,6 @@ class SignUp extends Component {
     this.submitValue = this.submitValue.bind(this);
     this.signup = this.signup.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.signup = this.signup.bind(this);
     this.state = {
       username: "",
       password: "",
@@ -39,6 +38,7 @@ class SignUp extends Component {
   }
 
   signup(e) {
+    alert("Clicked");
     let HomeURL = "/";
     e.preventDefault();
     fire
@@ -68,9 +68,7 @@ class SignUp extends Component {
               type="text"
               placeholder="somedude"
               name="username"
-              onChange={(e) =>
-                this.setState({ [e.target.name]: e.target.value })
-              }
+              onChange={(e) => this.setState({ username: e.target.value })}
             />
           </div>
 
@@ -83,15 +81,20 @@ class SignUp extends Component {
               type="password"
               placeholder="******"
               name="password"
-              onChange={(e) =>
-                this.setState({ [e.target.name]: e.target.value })
-              }
+              onChange={(e) => this.setState({ password: e.target.value })}
             />
           </div>
 
           <div className="mt-8">
             <div className="uppercase w-32 flex items-center font-bold">
-              <BlueButton onClick={this.signup} text="Sign Up" />
+              <button
+                onClick={(props) => {
+                  console.log("Button was pressed");
+                  this.signup(props);
+                }}
+              >
+                Sign Up
+              </button>
             </div>
             <p className="mx-auto mt-6 text-xs">
               Got an account? &nbsp;
