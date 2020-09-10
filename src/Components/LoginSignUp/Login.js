@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../Layout/BlueButton";
 import fire from "../../config/Fire";
+import { Redirect } from "react-router";
 
 // const Login = () => {
 
@@ -24,6 +25,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      errorMessage: "",
     };
     const submitValue = (props) => {
       const formDetails = {
@@ -48,10 +50,14 @@ class Login extends Component {
     e.preventDefault();
     fire
       .auth()
-      .signInWithEmailAndPassword(e.username, e.password)
-      .then((u) => {})
+      .signInWithEmailAndPassword(this.state.username, this.state.password)
+      .then((u) => {
+        window.location.href = "/";
+      })
       .catch((error) => {
         console.log(error);
+        console.log(error.message);
+        this.setState({ errorMessage: error.message });
       });
   }
 
@@ -62,7 +68,7 @@ class Login extends Component {
           <h4 className="font-bold uppercase text-blue-600">Login</h4>
           <div className="flex flex-col mt-4">
             <label name="username" className="uppercase text-sm mb-2 font-bold">
-              Username
+              Email
             </label>
             <input
               className="border-2 border-solid border-gray-400 px-4 py-2 rounded-lg"
@@ -86,10 +92,7 @@ class Login extends Component {
             />
           </div>
           <div className="mt-8">
-            <div
-              onClick={this.submitValue}
-              className="uppercase w-20 font-bold"
-            >
+            <div className="uppercase w-20 font-bold">
               <button
                 onClick={(props) => {
                   console.log("Button was pressed");
@@ -98,6 +101,11 @@ class Login extends Component {
               >
                 Login
               </button>
+              {this.state.errorMessage ? (
+                <p>{this.state.errorMessage}</p>
+              ) : (
+                <p></p>
+              )}
             </div>
 
             <p className="mx-auto mt-6 cursor-pointer uppercase font-bold text-xs text-blue-500 hover:text-blue-300">

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router";
 import BlueButton from "../Layout/BlueButton";
 import { Component } from "react";
 import fire from "../../config/Fire";
+import { Switch, Route } from "react-router-dom";
+import App from "../../App";
 
 class SignUp extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class SignUp extends Component {
     this.state = {
       username: "",
       password: "",
+      errorMessage: "",
     };
   }
 
@@ -38,7 +40,6 @@ class SignUp extends Component {
   }
 
   signup(e) {
-    alert("Clicked");
     let HomeURL = "/";
     e.preventDefault();
     fire
@@ -47,11 +48,13 @@ class SignUp extends Component {
       .then((u) => {})
       .then((u) => {
         console.log(u);
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
+        console.log(error.message);
+        this.setState({ errorMessage: error.message });
       });
-    return <Redirect to={HomeURL} />;
   }
 
   render() {
@@ -61,7 +64,7 @@ class SignUp extends Component {
           <h4 className="font-bold uppercase text-blue-600">Sign Up</h4>
           <div className="flex flex-col mt-4">
             <label name="username" className="uppercase text-sm mb-2 font-bold">
-              Username
+              Email
             </label>
             <input
               className="border-2 border-solid border-gray-400 px-4 py-2 rounded-lg"
@@ -95,6 +98,11 @@ class SignUp extends Component {
               >
                 Sign Up
               </button>
+              {this.state.errorMessage ? (
+                <p>{this.state.errorMessage}</p>
+              ) : (
+                <p></p>
+              )}
             </div>
             <p className="mx-auto mt-6 text-xs">
               Got an account? &nbsp;
