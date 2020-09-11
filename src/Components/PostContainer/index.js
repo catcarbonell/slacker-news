@@ -1,20 +1,38 @@
-import React from 'react';
-import Post from './Post';
+import React, { Component } from "react";
+import Post from "./Post";
+import fire from "../../config/Fire";
+import { render } from "@testing-library/react";
 
-const PostContainer = () => {
-    return(
-        <>
-             {/* We can .map() the Firebase DB for content. This Post component will be the base for it. */}
-            <Post 
-            title="Almost half of senior employees confess to slacking off at work"
-            url="https://www.hrreview.co.uk/hr-news/almost-half-of-senior-employees-confess-to-slacking-off-at-work/120829"
-            shorturl="hrreview.co.uk"
-            username="somedude"
-            time="8 hours ago"
-            comments={420}
-            />
-            
-        </>
-    )
+class PostContainer extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  posts = [];
+
+  componentDidMount() {
+    const db = fire.firestore();
+    {
+      db.collection("posts")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((post) => {
+            console.log(`${post.id} => ${post.data()}`);
+            this.posts.push();
+          });
+        });
+    }
+  }
+
+  list = this.posts.forEach((post) => (
+    <li key={post.owner}>
+      <Post owner={post.owner} title={post.title} url={post.url} />
+    </li>
+  ));
+
+  render() {
+    return <ul> {this.list} </ul>;
+  }
 }
+
 export default PostContainer;
