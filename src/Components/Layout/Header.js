@@ -21,17 +21,17 @@ const Header = () => {
         </p>
       </div>
       <div className="flex flex-row w-1/2 justify-end items-center">
-        <NavItem text="New" />
-        <NavItem text="Past" />
+        {/* <NavItem text="New" /> */}
+        {/* <NavItem text="Past" /> */}
         <NavItem text="Comments" />
         <NavItem text="Ask" />
-        <NavItem text="Show" />
+        {/* <NavItem text="Show" /> */}
         <NavItem text="Jobs" />
         <Link to="/newpost">
           <NavItem text="Submit" />
         </Link>
 
-        {fire.auth().currentUser ? <p>{fire.auth().currentUser.email}</p> : ""}
+        {fire.auth().currentUser ? <p className="mr-4">{fire.auth().currentUser.email}</p> : ""}
 
         {fire.auth().currentUser ? (
           <Link to="/logout" onClick={logout}>
