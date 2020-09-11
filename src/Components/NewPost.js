@@ -58,7 +58,7 @@ class NewPost extends Component {
       title: "",
       url: "",
     });
-    //window.location.href = "/";
+    window.location.href = "/";
   }
 
   render() {
