@@ -9,7 +9,7 @@ const Post = (props) => {
         <a href={props.url} target="new">
           <h2 className="text-xl hover:text-blue-400">{props.title}</h2>
         </a>
-        <p className="text-sm ml-4">({props.shorturl})</p>
+        <p className="text-sm ml-4">({<a href={props.url} className="hover:text-blue-300" target="new">{props.url}</a>})</p>
       </div>
       {/* User info */}
       <div className="text-sm flex flex-row justify-evenly w-1/3">
