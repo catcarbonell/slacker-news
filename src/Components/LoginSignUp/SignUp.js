@@ -59,8 +59,8 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="m-auto max-w-sm flex flex-col p-6 bg-white mt-10 rounded-lg shadow-xl border-2 border-solid border-gray-200">
-        <form className="flex flex-col mx-auto py-8 px-6">
+      <div className="m-auto max-w-lg px-16 py-8 flex flex-col bg-white mt-10 rounded-lg shadow-xl border-2 border-solid border-gray-200">
+        <form className="flex flex-col">
           <h4 className="font-bold uppercase text-blue-600">Sign Up</h4>
           <div className="flex flex-col mt-4">
             <label name="username" className="uppercase text-sm mb-2 font-bold">
@@ -89,20 +89,24 @@ class SignUp extends Component {
           </div>
 
           <div className="mt-8">
-            <div className="uppercase w-32 flex items-center font-bold">
+            <div className="uppercase flex flex-col font-bold w-48">
+              {this.state.errorMessage ? (
+                <p className="text-red-500 text-sm mb-6">
+                  {this.state.errorMessage}
+                </p>
+              ) : (
+                <p></p>
+              )}
               <button
+                className="flex items-center"
                 onClick={(props) => {
                   console.log("Button was pressed");
                   this.signup(props);
                 }}
               >
-                Sign Up
+                <BlueButton text="Sign Up" />
               </button>
-              {this.state.errorMessage ? (
-                <p>{this.state.errorMessage}</p>
-              ) : (
-                <p></p>
-              )}
+          
             </div>
             <p className="mx-auto mt-6 text-xs">
               Got an account? &nbsp;
