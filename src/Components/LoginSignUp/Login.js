@@ -64,7 +64,7 @@ class Login extends Component {
   render() {
     return (
       <div className="m-auto max-w-lg px-16 py-8 flex flex-col bg-white mt-10 rounded-lg shadow-xl border-2 border-solid border-gray-200">
-        <form className="flex flex-col mx-auto py-8 px-6">
+        <form className="flex flex-col">
           <h4 className="font-bold uppercase text-blue-600">Login</h4>
           <div className="flex flex-col mt-4">
             <label name="username" className="uppercase text-sm mb-2 font-bold">

@@ -9,7 +9,7 @@ import App from "../App";
 
 const Content = () => {
   return (
-    <div className="m-auto flex flex-col bg-gray-100 mb-20">
+    <div className="mx-auto flex flex-col flex-grow bg-gray-100 pb-20 mb-20">
       <Switch>
         <Route exact path="/" component={PostContainer} />
         <Route path="/login" component={Login} />
