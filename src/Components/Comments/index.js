@@ -53,23 +53,28 @@ class Comments extends Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ text: e.target.value });
   }
 
   handleSumbit(e) {
     console.log("-------Owner------");
     console.log(fire.auth().currentUser.uid);
-    if (fire.auth().currentUser)
-      this.setState({ owner: fire.auth().currentUser.uid });
+
+    console.log("+++++++This is the comment text+++++++");
+    console.log(this.state.text);
+
+    //if (fire.auth().currentUser)
+    //this.setState({ owner: fire.auth().currentUser.uid });
 
     // Extract items from state to create new post to save in db
     const newComment = {
       owner: fire.auth().currentUser.uid,
       text: this.state.text,
-      postRef: db.doc(
-        "posts/" + "" /* need to reference the relevant post here! */
-      ).ref,
+      postRef: this.props.location.state.postId,
     };
+
+    console.log("NEW COMMENT");
+    console.log(newComment);
 
     var db = fire.firestore();
 
@@ -83,9 +88,7 @@ class Comments extends Component {
       });
 
     this.setState({
-      owner: "",
       text: "",
-      postRef: "",
     });
     //window.location.href = "/";
   }
@@ -104,15 +107,13 @@ class Comments extends Component {
         />
 
         {/* This div allows users to post new comments */}
-        <div
-          onChange={this.handleChange}
-          className="m-auto w-2/3 my-10 flex flex-col"
-        >
+        <div className="m-auto w-2/3 my-10 flex flex-col">
           <form className="place-content-center">
-            <textarea className="w-1/2 p-6 mb-4 border-2 border-solid border-gray-300">
-              lol
-            </textarea>
-            <div className="w-40 flex">
+            <textarea
+              onChange={this.handleChange}
+              className="w-1/2 p-6 mb-4 border-2 border-solid border-gray-300"
+            ></textarea>
+            <div onClick={this.handleSumbit} className="w-40 flex">
               <BlueButton text="Add Comment" />
             </div>
           </form>
