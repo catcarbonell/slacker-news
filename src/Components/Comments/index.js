@@ -14,8 +14,16 @@ class Comments extends Component {
   constructor(props) {
     super(props);
 
+    let propsObj = props;
+    console.log("=-=-=-=-=-=-PROPSOBJ-=-=-=-=-=-=");
+    console.log(props.location.state);
+
+    let postId = props.location.state.postId;
     console.log("THIS IS THE POST ID");
     console.log(props.location.state.postId);
+    console.log("THIS IS props.location.state");
+    console.log(props.location.state);
+    props = props.location.state;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
@@ -23,8 +31,11 @@ class Comments extends Component {
       owner: "",
       text: "",
       postRef: "",
+      comments: "",
+      postTitle: this.props.location.state.title,
+      postUrl: this.props.location.state.url,
     };
-    let postId = props.location.state;
+
     // New we need to load all the comments
     console.log("postId: ");
     console.log(postId);
@@ -82,15 +93,17 @@ class Comments extends Component {
   render() {
     return (
       <>
+        {/* This is the post that the user clicked on */}
         <Post
-          title="Almost half of senior employees confess to slacking off at work"
-          url="https://www.hrreview.co.uk/hr-news/almost-half-of-senior-employees-confess-to-slacking-off-at-work/120829"
+          title={this.state.postTitle}
+          url={this.state.postUrl}
           shorturl="hrreview.co.uk"
           username="somedude"
           time="8 hours ago"
           comments={420}
         />
 
+        {/* This div allows users to post new comments */}
         <div
           onChange={this.handleChange}
           className="m-auto w-2/3 my-10 flex flex-col"

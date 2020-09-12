@@ -63,6 +63,9 @@ const Post = (props) => {
                   pathname: "/comments",
                   state: {
                     postId: props.id,
+                    owner: props.owner,
+                    title: props.title,
+                    url: props.url,
                   },
                 }}
               >
