@@ -30,21 +30,41 @@ class NewPost extends Component {
       this.setState({ owner: fire.auth().currentUser.uid });
 
     // Extract items from state to create new post to save in db
-    const newPost = {
-      owner: fire.auth().currentUser.uid,
-      title: this.state.title,
-      url: this.state.url,
+
+    const addToDB = () => {
+      var newPost = {
+        owner: fire.auth().currentUser.uid,
+        title: this.state.title,
+        url: this.state.url,
+      };
+
+      var db = fire.firestore();
+
+      db.collection("posts")
+        .add(newPost)
+        .then(function () {
+          console.log("Document successfully written!");
+          window.location.href = "/";
+          console.log(newPost);
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
     };
 
     var db = fire.firestore();
 
     db.collection("posts")
-      .add(newPost)
-      .then(function () {
-        console.log("Document successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
+      .where("title", "==", this.state.title)
+      .get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => doc.data());
+        console.log(data);
+        if (data[0] == undefined) {
+          addToDB();
+        } else {
+          alert("Post Exists Try Again");
+        }
       });
 
     //let postsRef = fire.database().ref("posts").orderByKey();
@@ -53,12 +73,6 @@ class NewPost extends Component {
     //title: this.state.title,
     //url: this.state.url,
     //});
-    this.setState({
-      owner: "",
-      title: "",
-      url: "",
-    });
-    window.location.href = "/";
   }
 
   render() {
