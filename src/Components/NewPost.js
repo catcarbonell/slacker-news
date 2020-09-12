@@ -16,11 +16,14 @@ class NewPost extends Component {
       owner: "",
       title: "",
       url: "",
+      id: "",
     };
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    console.log("=====ID=====");
+    console.log(this.getId());
   }
 
   handleSumbit(e) {
@@ -38,9 +41,13 @@ class NewPost extends Component {
           owner: fire.auth().currentUser.uid,
           title: this.state.title,
           url: this.state.url,
+          id: "",
         };
 
         var db = fire.firestore();
+
+        console.log("NEW POST!!!!!!!!!");
+        console.log(newPost);
 
         db.collection("posts")
           .add(newPost)

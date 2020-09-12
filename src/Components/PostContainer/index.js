@@ -13,11 +13,32 @@ class PostContainer extends Component {
     db.collection("posts")
       .get()
       .then((querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => doc.data());
-        console.log(data);
+        let data = querySnapshot.docs.map((doc) => {
+          // doc.data()
+          let id = doc.id;
+          let d = doc.data();
+          d.id = id;
+
+          console.log("------data=======");
+          console.log(d);
+
+          return d;
+        });
+        const docIds = querySnapshot.docs.map((doc) => doc.id);
+
+        //var id = doc.data().uid;
+
+        // need to get the correct id out of docids
+        //
+        //
+        //
+        //
+        //
+
         this.setState({ posts: data });
       });
   }
+
   render() {
     return (
       <>
@@ -27,6 +48,7 @@ class PostContainer extends Component {
             title={post.title}
             url={post.url}
             shorturl={post.url}
+            id={post.id}
             //   username="somedude"
             //   time="8 hours ago"
             //   comments={420}
