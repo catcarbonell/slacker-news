@@ -24,55 +24,59 @@ class NewPost extends Component {
   }
 
   handleSumbit(e) {
-    console.log("-------Owner------");
-    console.log(fire.auth().currentUser.uid);
-    if (fire.auth().currentUser)
+    if (fire.auth().currentUser == null) {
+      window.location.href = "/login";
+    } else {
+      console.log("-------Owner------");
+      console.log(fire.auth().currentUser.uid);
+
       this.setState({ owner: fire.auth().currentUser.uid });
 
-    // Extract items from state to create new post to save in db
+      // Extract items from state to create new post to save in db
+      const addToDB = () => {
+        var newPost = {
+          owner: fire.auth().currentUser.uid,
+          title: this.state.title,
+          url: this.state.url,
+        };
 
-    const addToDB = () => {
-      var newPost = {
-        owner: fire.auth().currentUser.uid,
-        title: this.state.title,
-        url: this.state.url,
+        var db = fire.firestore();
+
+        db.collection("posts")
+          .add(newPost)
+          .then(function () {
+            console.log("Document successfully written!");
+            window.location.href = "/";
+            console.log(newPost);
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
       };
 
+      // Checks if a post already has the same title.
       var db = fire.firestore();
 
       db.collection("posts")
-        .add(newPost)
-        .then(function () {
-          console.log("Document successfully written!");
-          window.location.href = "/";
-          console.log(newPost);
-        })
-        .catch(function (error) {
-          console.error("Error writing document: ", error);
+        .where("title", "==", this.state.title)
+        .get()
+        .then((querySnapshot) => {
+          const data = querySnapshot.docs.map((doc) => doc.data());
+          console.log(data);
+          if (data[0] == undefined) {
+            addToDB();
+          } else {
+            alert("Post Exists Try Again");
+          }
         });
-    };
 
-    var db = fire.firestore();
-
-    db.collection("posts")
-      .where("title", "==", this.state.title)
-      .get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => doc.data());
-        console.log(data);
-        if (data[0] == undefined) {
-          addToDB();
-        } else {
-          alert("Post Exists Try Again");
-        }
-      });
-
-    //let postsRef = fire.database().ref("posts").orderByKey();
-    //fire.database().ref("posts").push({
-    //owner: fire.auth().currentUser.uid,
-    //title: this.state.title,
-    //url: this.state.url,
-    //});
+      //let postsRef = fire.database().ref("posts").orderByKey();
+      //fire.database().ref("posts").push({
+      //owner: fire.auth().currentUser.uid,
+      //title: this.state.title,
+      //url: this.state.url,
+      //});
+    }
   }
 
   render() {

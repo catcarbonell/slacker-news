@@ -70,7 +70,10 @@ class Comments extends Component {
           comments={420}
         />
 
-        <div className="m-auto w-2/3 my-10 flex flex-col">
+        <div
+          onChange={this.handleChange}
+          className="m-auto w-2/3 my-10 flex flex-col"
+        >
           <form className="place-content-center">
             <textarea className="w-1/2 p-6 mb-4 border-2 border-solid border-gray-300">
               lol

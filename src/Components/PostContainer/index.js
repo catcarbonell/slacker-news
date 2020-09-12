@@ -19,7 +19,6 @@ class PostContainer extends Component {
       });
   }
   render() {
-    console.log(this.state.posts);
     return (
       <>
         {/* We can .map() the Firebase DB for content. This Post component will be the base for it. */}
