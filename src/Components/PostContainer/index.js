@@ -24,16 +24,7 @@ class PostContainer extends Component {
 
           return d;
         });
-        const docIds = querySnapshot.docs.map((doc) => doc.id);
-
-        //var id = doc.data().uid;
-
-        // need to get the correct id out of docids
-        //
-        //
-        //
-        //
-        //
+        //const docIds = querySnapshot.docs.map((doc) => doc.id);
 
         this.setState({ posts: data });
       });

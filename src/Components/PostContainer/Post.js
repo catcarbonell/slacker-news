@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import fire from "../../config/Fire";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const firebase = require("firebase");
 // Required for side-effects
@@ -10,14 +10,10 @@ const db = fire.firestore();
 
 function loadComments(id) {
   console.log("MADE IT INTO LOAD COMMENTS FUNCTION");
+  console.log(id);
 }
 
 const Post = (props) => {
-  const id = props.id;
-  console.log("THIS IS PROPS");
-  console.log(props);
-  console.log("||||||||||");
-
   return (
     <div className="m-auto lg:w-2/3 w-full flex flex-row px-4 py-2 bg-white mt-10 rounded-lg shadow-xl border-2 border-solid border-gray-200">
       <div className="p-4 flex place-self-center">
@@ -62,7 +58,17 @@ const Post = (props) => {
               }}
               className="hover:text-blue-400"
             >
-              <Link to="/comments">{props.comments} comments</Link>
+              <Link
+                to={{
+                  pathname: "/comments",
+                  state: {
+                    postId: props.id,
+                  },
+                }}
+              >
+                {" "}
+                {props.comments} comments{" "}
+              </Link>
             </p>
           </div>
         </div>

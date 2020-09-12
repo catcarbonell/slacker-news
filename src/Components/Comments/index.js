@@ -8,9 +8,15 @@ const firebase = require("firebase");
 // Required for side-effects
 require("firebase/firestore");
 
+let comments = [];
+
 class Comments extends Component {
   constructor(props) {
     super(props);
+
+    console.log("THIS IS THE POST ID");
+    console.log(props.location.state.postId);
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
     this.state = {
@@ -18,6 +24,21 @@ class Comments extends Component {
       text: "",
       postRef: "",
     };
+    let postId = props.location.state;
+    // New we need to load all the comments
+    console.log("postId: ");
+    console.log(postId);
+    const db = fire.firestore();
+    db.collection("comments")
+      .where("postRef", "==", postId) // NEED TO PUT POST ID HERE!!
+      .get()
+      .then((querySnapshot) => {
+        let comments = querySnapshot.docs.map((doc) => doc.data());
+
+        this.setState({ comments: comments });
+      });
+    console.log("Comments");
+    console.log(comments);
   }
 
   handleChange(e) {
@@ -82,26 +103,9 @@ class Comments extends Component {
               <BlueButton text="Add Comment" />
             </div>
           </form>
-
-          {/* Comments associated with Post id  */}
-          <Comment
-            username="somebody"
-            time="5 hours ago"
-            comment="once told me"
-          />
-
-          <Comment
-            username="the world"
-            time="5 hours ago"
-            comment="was gonna roll me"
-          />
-
-          <Comment
-            username="I"
-            time="5 hours ago"
-            comment="ain't the sharpest tool in the shed"
-          />
         </div>
+
+        {/* Comments associated with Post id will go here */}
       </>
     );
   }
