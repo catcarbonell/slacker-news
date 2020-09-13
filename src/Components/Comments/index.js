@@ -74,7 +74,7 @@ class Comments extends Component {
       .add(newComment)
       .then(function () {
         console.log("Comment successfully written!");
-        //return <Redirect to="/comments" />;
+        window.location.href = "/comments";
       })
       .catch(function (error) {
         console.error("Error writing comment: ", error);
