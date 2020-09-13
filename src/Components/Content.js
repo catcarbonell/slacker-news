@@ -1,11 +1,11 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import PostContainer from "./PostContainer";
 import Login from "./LoginSignUp/Login";
 import SignUp from "./LoginSignUp/SignUp";
 import NewPost from "./NewPost";
 import Comments from "./Comments";
-import App from "../App";
+import fire from "../config/Fire";
 
 const Content = () => {
   return (
@@ -14,7 +14,12 @@ const Content = () => {
         <Route exact path="/" component={PostContainer} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/newpost" component={NewPost} />
+        <Route
+          path="/newpost"
+          render={() =>
+            fire.auth().currentUser ? <NewPost /> : <Redirect to="/" />
+          }
+        />
         {/* for comments, we will need to figure out how to route to a specific Post via ID */}
         <Route path="/comments" component={Comments} />
       </Switch>

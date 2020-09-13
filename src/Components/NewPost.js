@@ -22,16 +22,12 @@ class NewPost extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log("=====ID=====");
   }
 
   handleSumbit(e) {
     if (fire.auth().currentUser == null) {
       window.location.href = "/login";
     } else {
-      // console.log("-------Owner------");
-      // console.log(fire.auth().currentUser.uid);
-
       this.setState({ owner: fire.auth().currentUser.uid });
 
       // Extract items from state to create new post to save in db

@@ -21,7 +21,6 @@ class SignUp extends Component {
   }
 
   submitValue(props) {
-    console.log("we did it!");
     const formDetails = {
       username: props.username,
       password: props.password,
