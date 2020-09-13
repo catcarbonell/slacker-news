@@ -106,7 +106,6 @@ class SignUp extends Component {
               >
                 <BlueButton text="Sign Up" />
               </button>
-          
             </div>
             <p className="mx-auto mt-6 text-xs">
               Got an account? &nbsp;

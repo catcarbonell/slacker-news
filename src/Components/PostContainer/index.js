@@ -18,8 +18,8 @@ class PostContainer extends Component {
           let d = doc.data();
           d.id = id;
 
-          // console.log("------d=======");
-          // console.log(d.title);
+          //   console.log("------d=======");
+          //   console.log(d.title);
 
           return d;
         });

@@ -3,7 +3,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../Layout/BlueButton";
 import fire from "../../config/Fire";
-import { Redirect } from "react-router";
+
 
 // const Login = () => {
 
@@ -26,6 +26,14 @@ class Login extends Component {
       username: "",
       password: "",
       errorMessage: "",
+    };
+    const submitValue = (props) => {
+      const formDetails = {
+        username: props.username,
+        password: props.password,
+      };
+      // console.log(formDetails);
+      this.login(formDetails);
     };
   }
 
@@ -84,9 +92,8 @@ class Login extends Component {
             />
           </div>
           <div className="mt-8">
-
-          <div className="uppercase flex flex-col font-bold w-48">
-            {this.state.errorMessage ? (
+            <div className="uppercase flex flex-col font-bold w-48">
+              {this.state.errorMessage ? (
                 <p className="text-red-500 text-sm mb-6">
                   {this.state.errorMessage}
                 </p>
@@ -100,10 +107,8 @@ class Login extends Component {
                   this.login(props);
                 }}
               >
-               <BlueButton text="Login" />
-
+                <BlueButton text="Login" />
               </button>
-             
             </div>
 
             <p className="mx-auto mt-6 cursor-pointer uppercase font-bold text-xs text-blue-500 hover:text-blue-300">
