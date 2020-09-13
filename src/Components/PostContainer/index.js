@@ -43,9 +43,6 @@ class PostContainer extends Component {
             url={post.url}
             shorturl={post.url}
             id={post.id}
-            //   username="somedude"
-            //   time="8 hours ago"
-            //   comments={420}
           />
         ))}
       </>

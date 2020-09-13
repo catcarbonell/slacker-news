@@ -38,9 +38,11 @@ class NewPost extends Component {
       const addToDB = () => {
         var newPost = {
           owner: fire.auth().currentUser.uid,
+          email: fire.auth().currentUser.email,
           title: this.state.title,
           url: this.state.url,
           id: "",
+          date: new Date(),
         };
 
         var db = fire.firestore();

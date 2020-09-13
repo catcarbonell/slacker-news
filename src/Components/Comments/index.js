@@ -3,6 +3,7 @@ import BlueButton from "../Layout/BlueButton";
 import Comment from "./Comment";
 import Post from "../PostContainer/Post";
 import fire from "../../config/Fire";
+import { Redirect, withRouter } from "react-router-dom";
 
 const firebase = require("firebase");
 // Required for side-effects
@@ -33,7 +34,7 @@ class Comments extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
     this.state = {
-      owner: "",
+      owner: this.props.location.state.owner,
       text: "",
       postRef: "",
       comments: [],
@@ -84,6 +85,7 @@ class Comments extends Component {
     // Extract items from state to create new post to save in db
     const newComment = {
       owner: fire.auth().currentUser.uid,
+      email: fire.auth().currentUser.email,
       text: this.state.text,
       postRef: this.props.location.state.postId,
     };
@@ -97,15 +99,21 @@ class Comments extends Component {
       .add(newComment)
       .then(function () {
         console.log("Comment successfully written!");
+        //return <Redirect to="/comments" />;
       })
       .catch(function (error) {
         console.error("Error writing comment: ", error);
       });
 
+    this.setState({ state: this.state });
     this.setState({
       text: "",
     });
-    //window.location.href = "/";
+    //this.props.history.push("/comments");
+    //window.location.href = "/comments";
+    //this.forceUpdate();
+    //return <Redirect to="/comments" />;
+    //ReactDOM.unmountComponentAtNode()
   }
 
   render() {
@@ -116,9 +124,8 @@ class Comments extends Component {
           title={this.state.postTitle}
           url={this.state.postUrl}
           shorturl="hrreview.co.uk"
-          username="somedude"
-          time="8 hours ago"
-          comments={420} // add length of comments array
+          owner={this.state.email}
+          comments={this.state.comments.length} // add length of comments array
         />
 
         {/* This div allows users to post new comments */}
@@ -136,7 +143,7 @@ class Comments extends Component {
 
         {/* Comments associated with Post id will go here */}
         {this.state.comments.map((com) => (
-          <Comment text={com.text} />
+          <Comment text={com.text} email={com.email} />
         ))}
       </>
     );

@@ -5,7 +5,7 @@ const Comment = (props) => {
   return (
     <Container>
       <div className="text-xs">
-        {props.username} - {props.time}
+        {props.email} - {props.date}
       </div>
       <div>{props.text}</div>
     </Container>
