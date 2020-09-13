@@ -21,14 +21,8 @@ class Comments extends Component {
     super(props);
 
     let propsObj = props;
-    console.log("=-=-=-=-=-=-PROPSOBJ-=-=-=-=-=-=");
-    console.log(props.location.state);
 
     this.postId = props.location.state.postId;
-    console.log("THIS IS THE POST ID");
-    console.log(props.location.state.postId);
-    console.log("THIS IS props.location.state");
-    console.log(props.location.state);
     props = props.location.state;
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,17 +48,10 @@ class Comments extends Component {
           // doc.data()
 
           let d = doc.data();
-
-          console.log("------d=======");
-          console.log(d);
           this.comments.concat(d);
           return d;
-          //this.setState({ comments: state.comments.concat(d) });
         });
         this.setState({ comments: coms });
-        console.log("Comments");
-        console.log(this.state.comments);
-        //const docIds = querySnapshot.docs.map((doc) => doc.id);
       });
   }
 
@@ -73,15 +60,6 @@ class Comments extends Component {
   }
 
   handleSumbit(e) {
-    console.log("-------Owner------");
-    console.log(fire.auth().currentUser.uid);
-
-    console.log("+++++++This is the comment text+++++++");
-    console.log(this.state.text);
-
-    //if (fire.auth().currentUser)
-    //this.setState({ owner: fire.auth().currentUser.uid });
-
     // Extract items from state to create new post to save in db
     const newComment = {
       owner: fire.auth().currentUser.uid,
@@ -89,9 +67,6 @@ class Comments extends Component {
       text: this.state.text,
       postRef: this.props.location.state.postId,
     };
-
-    console.log("NEW COMMENT");
-    console.log(newComment);
 
     var db = fire.firestore();
 

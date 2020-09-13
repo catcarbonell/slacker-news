@@ -8,11 +8,6 @@ require("firebase/firestore");
 
 const db = fire.firestore();
 
-function loadComments(id) {
-  console.log("MADE IT INTO LOAD COMMENTS FUNCTION");
-  console.log(id);
-}
-
 const Post = (props) => {
   return (
     <div className="m-auto lg:w-2/3 w-full flex flex-row px-4 py-2 bg-white mt-10 rounded-lg shadow-xl border-2 border-solid border-gray-200">
@@ -49,15 +44,7 @@ const Post = (props) => {
             <p className="mr-2">{props.owner} </p>
             <p className="mr-2">{props.date}</p>
             <p className="mr-2">hide post</p>
-            <p
-              onClick={() => {
-                console.log("---props.id---");
-                console.log(props.id);
-                console.log("------------");
-                loadComments(props.id);
-              }}
-              className="hover:text-blue-400"
-            >
+            <p className="hover:text-blue-400">
               <Link
                 to={{
                   pathname: "/comments",
