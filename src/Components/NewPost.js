@@ -23,7 +23,6 @@ class NewPost extends Component {
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
     console.log("=====ID=====");
-    console.log(this.getId());
   }
 
   handleSumbit(e) {

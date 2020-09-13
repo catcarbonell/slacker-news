@@ -46,7 +46,7 @@ const Post = (props) => {
         {/* User info */}
         <div>
           <div className="text-sm flex flex-row text-gray-500">
-            <p className="mr-2">somedude {/* {props.owner} */}</p>
+            <p className="mr-2">{props.owner} </p>
             <p className="mr-2">8 hours ago {/* {props.time} */}</p>
             <p className="mr-2">hide post</p>
             <p

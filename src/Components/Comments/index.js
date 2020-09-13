@@ -8,9 +8,14 @@ const firebase = require("firebase");
 // Required for side-effects
 require("firebase/firestore");
 
-let comments = [];
-
 class Comments extends Component {
+  //state = {
+  //comments: [],
+  //};
+  comments = [];
+  //state = {
+  //comms: [],
+  //};
   constructor(props) {
     super(props);
 
@@ -18,7 +23,7 @@ class Comments extends Component {
     console.log("=-=-=-=-=-=-PROPSOBJ-=-=-=-=-=-=");
     console.log(props.location.state);
 
-    let postId = props.location.state.postId;
+    this.postId = props.location.state.postId;
     console.log("THIS IS THE POST ID");
     console.log(props.location.state.postId);
     console.log("THIS IS props.location.state");
@@ -31,25 +36,35 @@ class Comments extends Component {
       owner: "",
       text: "",
       postRef: "",
-      comments: "",
+      comments: [],
       postTitle: this.props.location.state.title,
       postUrl: this.props.location.state.url,
     };
+  }
 
+  componentDidMount() {
     // New we need to load all the comments
-    console.log("postId: ");
-    console.log(postId);
     const db = fire.firestore();
     db.collection("comments")
-      .where("postRef", "==", postId) // NEED TO PUT POST ID HERE!!
+      .where("postRef", "==", this.postId) // NEED TO PUT POST ID HERE!!
       .get()
       .then((querySnapshot) => {
-        let comments = querySnapshot.docs.map((doc) => doc.data());
+        let coms = querySnapshot.docs.map((doc) => {
+          // doc.data()
 
-        this.setState({ comments: comments });
+          let d = doc.data();
+
+          console.log("------d=======");
+          console.log(d);
+          this.comments.concat(d);
+          return d;
+          //this.setState({ comments: state.comments.concat(d) });
+        });
+        this.setState({ comments: coms });
+        console.log("Comments");
+        console.log(this.state.comments);
+        //const docIds = querySnapshot.docs.map((doc) => doc.id);
       });
-    console.log("Comments");
-    console.log(comments);
   }
 
   handleChange(e) {
@@ -103,7 +118,7 @@ class Comments extends Component {
           shorturl="hrreview.co.uk"
           username="somedude"
           time="8 hours ago"
-          comments={420}
+          comments={420} // add length of comments array
         />
 
         {/* This div allows users to post new comments */}
@@ -120,11 +135,12 @@ class Comments extends Component {
         </div>
 
         {/* Comments associated with Post id will go here */}
+        {this.state.comments.map((com) => (
+          <Comment text={com.text} />
+        ))}
       </>
     );
   }
 }
-
-// We need to load all comments associated with the specific post
 
 export default Comments;
