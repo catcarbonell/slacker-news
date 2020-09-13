@@ -3,8 +3,6 @@ import Header from "./Components/Layout/Header";
 import Content from "./Components/Content";
 
 import fire from "./config/Fire";
-import Login from "./Components/LoginSignUp/Login";
-import PostContainer from "./Components/PostContainer/index";
 
 class App extends Component {
   constructor() {
@@ -21,7 +19,6 @@ class App extends Component {
 
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({ user });
         localStorage.setItem("user", user.uid);
