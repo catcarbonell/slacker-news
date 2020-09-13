@@ -26,7 +26,7 @@ class SignUp extends Component {
       username: props.username,
       password: props.password,
     };
-    console.log(formDetails);
+    // console.log(formDetails);
     this.signup(formDetails);
   }
 
@@ -47,7 +47,7 @@ class SignUp extends Component {
       .createUserWithEmailAndPassword(this.state.username, this.state.password)
       .then((u) => {})
       .then((u) => {
-        console.log(u);
+        // console.log(u);
         window.location.href = "/";
       })
       .catch((error) => {
@@ -100,13 +100,12 @@ class SignUp extends Component {
               <button
                 className="flex items-center"
                 onClick={(props) => {
-                  console.log("Button was pressed");
+                  // console.log("Button was pressed");
                   this.signup(props);
                 }}
               >
                 <BlueButton text="Sign Up" />
               </button>
-          
             </div>
             <p className="mx-auto mt-6 text-xs">
               Got an account? &nbsp;

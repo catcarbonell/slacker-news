@@ -32,7 +32,7 @@ class Login extends Component {
         username: props.username,
         password: props.password,
       };
-      console.log(formDetails);
+      // console.log(formDetails);
       this.login(formDetails);
     };
   }
@@ -92,9 +92,8 @@ class Login extends Component {
             />
           </div>
           <div className="mt-8">
-
-          <div className="uppercase flex flex-col font-bold w-48">
-            {this.state.errorMessage ? (
+            <div className="uppercase flex flex-col font-bold w-48">
+              {this.state.errorMessage ? (
                 <p className="text-red-500 text-sm mb-6">
                   {this.state.errorMessage}
                 </p>
@@ -104,14 +103,12 @@ class Login extends Component {
               <button
                 className="flex items-center"
                 onClick={(props) => {
-                  console.log("Button was pressed");
+                  // console.log("Button was pressed");
                   this.login(props);
                 }}
               >
-               <BlueButton text="Login" />
-
+                <BlueButton text="Login" />
               </button>
-             
             </div>
 
             <p className="mx-auto mt-6 cursor-pointer uppercase font-bold text-xs text-blue-500 hover:text-blue-300">
