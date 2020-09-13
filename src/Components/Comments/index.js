@@ -10,17 +10,10 @@ const firebase = require("firebase");
 require("firebase/firestore");
 
 class Comments extends Component {
-  //state = {
-  //comments: [],
-  //};
   comments = [];
-  //state = {
-  //comms: [],
-  //};
+
   constructor(props) {
     super(props);
-
-    let propsObj = props;
 
     this.postId = props.location.state.postId;
     props = props.location.state;

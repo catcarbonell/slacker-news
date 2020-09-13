@@ -7,6 +7,8 @@ const firebase = require("firebase");
 // Required for side-effects
 require("firebase/firestore");
 
+const createHistory = require("history").createBrowserHistory;
+
 class NewPost extends Component {
   constructor(props) {
     super(props);
@@ -43,15 +45,14 @@ class NewPost extends Component {
 
         var db = fire.firestore();
 
-        // console.log("NEW POST!!!!!!!!!");
-        // console.log(newPost);
-
         db.collection("posts")
           .add(newPost)
           .then(function () {
             console.log("Document successfully written!");
-            window.location.href = "/";
-            // console.log(newPost);
+            let history = createHistory();
+            history.push("/");
+            let pathUrl = window.location.href;
+            window.location.href = pathUrl;
           })
           .catch(function (error) {
             console.error("Error writing document: ", error);
@@ -73,13 +74,6 @@ class NewPost extends Component {
             alert("Post Exists Try Again");
           }
         });
-
-      //let postsRef = fire.database().ref("posts").orderByKey();
-      //fire.database().ref("posts").push({
-      //owner: fire.auth().currentUser.uid,
-      //title: this.state.title,
-      //url: this.state.url,
-      //});
     }
   }
 

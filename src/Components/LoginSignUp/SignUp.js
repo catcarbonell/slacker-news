@@ -7,6 +7,8 @@ import fire from "../../config/Fire";
 import { Switch, Route } from "react-router-dom";
 import App from "../../App";
 
+const createHistory = require("history").createBrowserHistory;
+
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -25,29 +27,26 @@ class SignUp extends Component {
       username: props.username,
       password: props.password,
     };
-    // console.log(formDetails);
+
     this.signup(formDetails);
   }
 
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // this.setUsername(e.target.username);
-    // this.setPassword(e.target.password);
   }
 
   signup(e) {
-    let HomeURL = "/";
     e.preventDefault();
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.username, this.state.password)
       .then((u) => {})
       .then((u) => {
-        // console.log(u);
-        window.location.href = "/";
+        console.log(u);
+        let history = createHistory();
+        history.push("/");
+        let pathUrl = window.location.href;
+        window.location.href = pathUrl;
       })
       .catch((error) => {
         console.log(error);
