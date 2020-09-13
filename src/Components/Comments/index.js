@@ -10,13 +10,8 @@ const firebase = require("firebase");
 require("firebase/firestore");
 
 class Comments extends Component {
-  //state = {
-  //comments: [],
-  //};
   comments = [];
-  //state = {
-  //comms: [],
-  //};
+
   constructor(props) {
     super(props);
 
@@ -96,6 +91,7 @@ class Comments extends Component {
       <>
         {/* This is the post that the user clicked on */}
         <Post
+          key={this.state.owner}
           title={this.state.postTitle}
           url={this.state.postUrl}
           shorturl="hrreview.co.uk"

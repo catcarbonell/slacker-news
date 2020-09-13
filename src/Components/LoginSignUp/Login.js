@@ -3,19 +3,9 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../Layout/BlueButton";
 import fire from "../../config/Fire";
+import { Redirect, withRouter } from "react-router-dom";
 
-
-// const Login = () => {
-
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//     const submitValue = () => {
-//         const formDetails = {
-//             'username' : username,
-//             'password' : password
-//         }
-//         console.log(formDetails);
-//     }
+const createHistory = require("history").createBrowserHistory;
 
 class Login extends Component {
   constructor(props) {
@@ -32,18 +22,13 @@ class Login extends Component {
         username: props.username,
         password: props.password,
       };
-      // console.log(formDetails);
+
       this.login(formDetails);
     };
   }
 
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // this.setUsername(e.target.username);
-    // this.setPassword(e.target.password);
   }
 
   login(e) {
@@ -52,7 +37,10 @@ class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.username, this.state.password)
       .then((u) => {
-        window.location.href = "/";
+        let history = createHistory();
+        history.push("/");
+        let pathUrl = window.location.href;
+        window.location.href = pathUrl;
       })
       .catch((error) => {
         // console.log(error);

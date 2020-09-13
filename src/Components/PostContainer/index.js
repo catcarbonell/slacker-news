@@ -18,16 +18,10 @@ class PostContainer extends Component {
           let d = doc.data();
           d.id = id;
 
-          //   console.log("------d=======");
-          //   console.log(d.title);
-
           return d;
         });
-        //const docIds = querySnapshot.docs.map((doc) => doc.id);
 
         this.setState({ posts: data });
-        // console.log("THIS.STATE.POST");
-        // console.log(this.state.posts[0]);
       });
   }
 
@@ -38,6 +32,7 @@ class PostContainer extends Component {
         {this.state.posts.map((post) => (
           <Post
             // owner={fire.auth().currentUser.email}
+
             title={post.title}
             url={post.url}
             shorturl={post.url}
