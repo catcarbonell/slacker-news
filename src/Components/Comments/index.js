@@ -15,6 +15,8 @@ class Comments extends Component {
   constructor(props) {
     super(props);
 
+    let propsObj = props;
+
     this.postId = props.location.state.postId;
     props = props.location.state;
 
@@ -89,6 +91,7 @@ class Comments extends Component {
       <>
         {/* This is the post that the user clicked on */}
         <Post
+          key={this.state.owner}
           title={this.state.postTitle}
           url={this.state.postUrl}
           shorturl="hrreview.co.uk"

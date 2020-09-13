@@ -33,6 +33,7 @@ class PostContainer extends Component {
         {this.state.posts.map((post) => (
           <Post
             // owner={fire.auth().currentUser.email}
+
             title={post.title}
             url={post.url}
             shorturl={post.url}
