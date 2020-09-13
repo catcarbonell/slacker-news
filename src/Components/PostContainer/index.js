@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Post from "./Post";
 import fire from "../../config/Fire";
-import { render } from "@testing-library/react";
 
 class PostContainer extends Component {
   state = {
@@ -38,7 +37,7 @@ class PostContainer extends Component {
         {/* We can .map() the Firebase DB for content. This Post component will be the base for it. */}
         {this.state.posts.map((post) => (
           <Post
-            owner={fire.auth().currentUser.email}
+            // owner={fire.auth().currentUser.email}
             title={post.title}
             url={post.url}
             shorturl={post.url}

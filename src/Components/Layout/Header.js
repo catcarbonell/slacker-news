@@ -23,10 +23,10 @@ const Header = () => {
       <div className="flex flex-row w-1/2 justify-end items-center">
         {/* <NavItem text="New" /> */}
         {/* <NavItem text="Past" /> */}
-        <NavItem text="Comments" />
-        <NavItem text="Ask" />
+        {/* <NavItem text="Comments" /> */}
+        {/* <NavItem text="Ask" /> */}
         {/* <NavItem text="Show" /> */}
-        <NavItem text="Jobs" />
+        {/* <NavItem text="Jobs" /> */}
         <Link to="/newpost">
           <NavItem text="Submit" />
         </Link>
