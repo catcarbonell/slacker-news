@@ -21,12 +21,12 @@ class SignUp extends Component {
   }
 
   submitValue(props) {
-    console.log("we did it!");
+    // console.log("we did it!");
     const formDetails = {
       username: props.username,
       password: props.password,
     };
-    console.log(formDetails);
+    // console.log(formDetails);
     this.signup(formDetails);
   }
 
@@ -47,12 +47,12 @@ class SignUp extends Component {
       .createUserWithEmailAndPassword(this.state.username, this.state.password)
       .then((u) => {})
       .then((u) => {
-        console.log(u);
+        // console.log(u);
         window.location.href = "/";
       })
       .catch((error) => {
-        console.log(error);
-        console.log(error.message);
+        // console.log(error);
+        // console.log(error.message);
         this.setState({ errorMessage: error.message });
       });
   }
@@ -100,7 +100,7 @@ class SignUp extends Component {
               <button
                 className="flex items-center"
                 onClick={(props) => {
-                  console.log("Button was pressed");
+                  // console.log("Button was pressed");
                   this.signup(props);
                 }}
               >

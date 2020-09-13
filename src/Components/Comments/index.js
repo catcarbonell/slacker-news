@@ -73,7 +73,7 @@ class Comments extends Component {
     db.collection("comments")
       .add(newComment)
       .then(function () {
-        console.log("Comment successfully written!");
+        // console.log("Comment successfully written!");
         //return <Redirect to="/comments" />;
       })
       .catch(function (error) {

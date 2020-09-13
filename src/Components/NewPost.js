@@ -22,15 +22,15 @@ class NewPost extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log("=====ID=====");
+    // console.log("=====ID=====");
   }
 
   handleSumbit(e) {
     if (fire.auth().currentUser == null) {
       window.location.href = "/login";
     } else {
-      console.log("-------Owner------");
-      console.log(fire.auth().currentUser.uid);
+      // console.log("-------Owner------");
+      // console.log(fire.auth().currentUser.uid);
 
       this.setState({ owner: fire.auth().currentUser.uid });
 
@@ -47,15 +47,15 @@ class NewPost extends Component {
 
         var db = fire.firestore();
 
-        console.log("NEW POST!!!!!!!!!");
-        console.log(newPost);
+        // console.log("NEW POST!!!!!!!!!");
+        // console.log(newPost);
 
         db.collection("posts")
           .add(newPost)
           .then(function () {
-            console.log("Document successfully written!");
+            // console.log("Document successfully written!");
             window.location.href = "/";
-            console.log(newPost);
+            // console.log(newPost);
           })
           .catch(function (error) {
             console.error("Error writing document: ", error);
@@ -70,7 +70,7 @@ class NewPost extends Component {
         .get()
         .then((querySnapshot) => {
           const data = querySnapshot.docs.map((doc) => doc.data());
-          console.log(data);
+          // console.log(data);
           if (data[0] == undefined) {
             addToDB();
           } else {

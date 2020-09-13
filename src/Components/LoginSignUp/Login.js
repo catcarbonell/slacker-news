@@ -27,14 +27,6 @@ class Login extends Component {
       password: "",
       errorMessage: "",
     };
-    const submitValue = (props) => {
-      const formDetails = {
-        username: props.username,
-        password: props.password,
-      };
-      console.log(formDetails);
-      this.login(formDetails);
-    };
   }
 
   // const [username, setUsername] = useState("");
@@ -55,8 +47,8 @@ class Login extends Component {
         window.location.href = "/";
       })
       .catch((error) => {
-        console.log(error);
-        console.log(error.message);
+        // console.log(error);
+        // console.log(error.message);
         this.setState({ errorMessage: error.message });
       });
   }
@@ -104,7 +96,7 @@ class Login extends Component {
               <button
                 className="flex items-center"
                 onClick={(props) => {
-                  console.log("Button was pressed");
+                  // console.log("Button was pressed");
                   this.login(props);
                 }}
               >
