@@ -2,12 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NavItem from "./NavItem";
 import BlueButton from "./BlueButton";
-import fire from "../../config/Fire";
-
-function logout() {
-  fire.auth().signOut();
-  window.location.href = "/";
-}
 
 const Header = () => {
   return (
@@ -30,18 +24,6 @@ const Header = () => {
         <Link to="/newpost">
           <NavItem text="Submit" />
         </Link>
-
-        {fire.auth().currentUser ? <p className="mr-4">{fire.auth().currentUser.email}</p> : ""}
-
-        {fire.auth().currentUser ? (
-          <Link to="/logout" onClick={logout}>
-            <BlueButton text="Logout" />
-          </Link>
-        ) : (
-          <Link to="/login">
-            <BlueButton text="Login" />
-          </Link>
-        )}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Login from "./LoginSignUp/Login";
 import SignUp from "./LoginSignUp/SignUp";
 import NewPost from "./NewPost";
 import Comments from "./Comments";
-import fire from "../config/Fire";
+import fire from "../utils/firebase";
 
 const Content = () => {
   return (

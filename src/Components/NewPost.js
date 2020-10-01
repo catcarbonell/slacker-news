@@ -1,7 +1,7 @@
 import React from "react";
 import BlueButton from "../Components/Layout/BlueButton";
 import { Component } from "react";
-import fire from "../config/Fire";
+import fire from "../utils/firebase";
 
 const firebase = require("firebase");
 // Required for side-effects

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import BlueButton from "../Layout/BlueButton";
 import { Component } from "react";
-import fire from "../../config/Fire";
+import fire from "../../utils/firebase";
 import { Switch, Route } from "react-router-dom";
 import App from "../../App";
 

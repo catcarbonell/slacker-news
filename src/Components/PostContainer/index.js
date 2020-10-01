@@ -1,46 +1,47 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Post from "./Post";
-import fire from "../../config/Fire";
+import {FirebaseContext} from "../../utils/firebase";
+import 'firebase/firestore';
 
-class PostContainer extends Component {
-  state = {
-    posts: [],
-  };
+export default () => {
+  const firebase= useContext(FirebaseContext);
+  const [posts, setPosts] = useState(null);
+  const ref = useRef(firebase.firestore().collection(`posts`))
 
-  componentDidMount() {
-    const db = fire.firestore();
-    db.collection("posts")
-      .get()
-      .then((querySnapshot) => {
-        let data = querySnapshot.docs.map((doc) => {
-          // doc.data()
-          let id = doc.id;
-          let d = doc.data();
-          d.id = id;
-
-          return d;
-        });
-
-        this.setState({ posts: data });
-      });
+  useEffect(() =>{
+      ref.get().then(snapshot => {
+        if (!snapshot){
+          setPosts(p =>[])
+        }else {
+          let posts = [];
+          snapshot.forEach( post => {
+            posts.push({ key: post.id, ...post.data() })
+          })
+          setPosts(p => posts)
+        }
+      }).catch(error => { console.log(error)})
+  }, [])
+  let postsToDisplay
+  if (posts === null){
+    postsToDisplay = (<div>Loading posts...</div>)
+  }else if( posts.length === 0){
+    postsToDisplay = (<div>No posts found</div>)
+  }else{
+    postsToDisplay = posts.map(post => {
+      return (
+        <Post 
+          url= {post.url}
+          id= {post.id}
+          title= {post.title}
+          owner = {post.owner}
+        />)
+    })
   }
-
-  render() {
-    return (
-      <>
-        {/* We can .map() the Firebase DB for content. This Post component will be the base for it. */}
-        {this.state.posts.map((post) => (
-          <Post
-            // owner={fire.auth().currentUser.email}
-
-            title={post.title}
-            url={post.url}
-            shorturl={post.url}
-            id={post.id}
-          />
-        ))}
-      </>
-    );
-  }
+  return (
+    <>
+      { postsToDisplay }
+    </>
+  )
 }
-export default PostContainer;
+
+

@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../Layout/BlueButton";
-import fire from "../../config/Fire";
+import fire from "../../utils/firebase";
 import { Redirect, withRouter } from "react-router-dom";
 
 const createHistory = require("history").createBrowserHistory;
